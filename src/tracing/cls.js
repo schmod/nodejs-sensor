@@ -2,8 +2,9 @@
 
 var tracingUtil = require('./tracingUtil');
 var hooked = require('cls-hooked');
-var currentRootSpanKey = 'crsKey';
-var currentSpanKey = 'csKey';
+
+var currentRootSpanKey = 'com.instana.rootSpan';
+var currentSpanKey = 'com.instana.span';
 
 var exitSpans = ['node.http.client', 'elasticsearch', 'mongo', 'mysql', 'redis'];
 var entrySpans = ['node.http.server'];
@@ -78,6 +79,14 @@ exports.startSpan = function startSpan(spanName, traceId, spanId) {
  */
 exports.getCurrentRootSpan = function getCurrentRootSpan() {
   return exports.ns.get(currentRootSpanKey);
+};
+
+/*
+ * set the currently active span
+ *
+ */
+exports.setCurrentSpan = function setCurrentSpan(span) {
+  return exports.ns.set(currentSpanKey, span);
 };
 
 /*

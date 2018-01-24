@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+ - Fix an async correlation issue caused by outgoing HTTP calls.
+
 ## 1.32.0
  - Include details about uncaught errors in express handlers.
 

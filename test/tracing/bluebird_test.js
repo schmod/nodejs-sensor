@@ -9,7 +9,7 @@ var Promise = require('bluebird');
 var utils = require('../utils');
 var assert = require('assert');
 
-describe('tracing/bluebird', function() {
+describe('tracing/bluebirdOutsideOfApp', function() {
   if (!supportedVersion(process.versions.node)) {
     return;
   }
