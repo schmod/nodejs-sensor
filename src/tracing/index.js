@@ -19,6 +19,7 @@ exports.init = function(_config) {
     require('./tracingUtil').init(config);
     require('./transmission').init(config);
     require('./opentracing').init(config, automaticTracingEnabled);
+    require('./instrumentation/bluebird.js').init(config);
 
     if (automaticTracingEnabled) {
       require('./instrumentation/httpServer.js').init(config);
@@ -79,6 +80,7 @@ exports.activate = function() {
   if (tracingEnabled) {
     require('./transmission').activate();
     require('./opentracing').activate();
+    require('./instrumentation/bluebird.js').activate();
 
     if (automaticTracingEnabled) {
       require('./instrumentation/httpServer.js').activate();
@@ -107,6 +109,7 @@ exports.deactivate = function() {
       require('./instrumentation/express.js').deactivate();
     }
 
+    require('./instrumentation/bluebird.js').deactivate();
     require('./opentracing').deactivate();
     require('./transmission').deactivate();
   }
